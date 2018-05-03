@@ -25,27 +25,27 @@
    </property>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>文件</string>
+     <string>&amp;File</string>
     </property>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
-     <string>编辑</string>
+     <string>&amp;Edit</string>
     </property>
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
-     <string>工具</string>
+     <string>&amp;Tool</string>
     </property>
    </widget>
    <widget class="QMenu" name="menu_4">
     <property name="title">
-     <string>帮助</string>
+     <string>&amp;Help</string>
     </property>
    </widget>
    <widget class="QMenu" name="menu_5">
     <property name="title">
-     <string>窗口</string>
+     <string>&amp;View</string>
     </property>
    </widget>
    <addaction name="menu"/>
