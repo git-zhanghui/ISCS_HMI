@@ -2493,11 +2493,11 @@ public Q_SLOTS:
 Q_SIGNALS:
     void valueChanged(const QBrush &value);
 
-protected:
-    void paintEvent(QPaintEvent *);
+public Q_SLOTS:
+    void showBrushDialog();
 
-private Q_SLOTS:
-    void brushLabelPressed();
+protected:
+    void paintEvent(QPaintEvent * event);
 
 private:
     QBrush m_brush;
@@ -2514,7 +2514,7 @@ QtBrushEditWidget::QtBrushEditWidget(QWidget *parent) :
     setFocusProxy(m_brushLabel);
     setFocusPolicy(m_brushLabel->focusPolicy());
     m_brushLabel->installEventFilter(this);
-    connect(m_brushLabel, SIGNAL(pressed()), this, SLOT(brushLabelPressed()));
+    connect(m_brushLabel, SIGNAL(pressed()), this, SLOT(showBrushDialog()));
     lt->addWidget(m_brushLabel);
 }
 
@@ -2526,7 +2526,7 @@ void QtBrushEditWidget::setValue(const QBrush &c)
     }
 }
 
-void QtBrushEditWidget::brushLabelPressed()
+void QtBrushEditWidget::showBrushDialog()
 {
     bool ok = false;
     QRgb oldRgba = m_brush.color().rgba();
@@ -2554,6 +2554,9 @@ bool QtBrushEditWidget::eventFilter(QObject *obj, QEvent *ev)
             }
         }
             break;
+        case QEvent::Show:
+            showBrushDialog();
+            break;
         default:
             break;
         }
@@ -2561,7 +2564,7 @@ bool QtBrushEditWidget::eventFilter(QObject *obj, QEvent *ev)
     return QWidget::eventFilter(obj, ev);
 }
 
-void QtBrushEditWidget::paintEvent(QPaintEvent *)
+void QtBrushEditWidget::paintEvent(QPaintEvent * event)
 {
     QStyleOption opt;
     opt.init(this);
